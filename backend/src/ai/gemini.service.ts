@@ -145,7 +145,7 @@ export class GeminiService {
             if (taskCount > 5) advice = "เคลียร์งานด่วนก่อนนะครับ เดี๋ยวดินพอกหางหมู";
             else if (taskCount === 0) advice = "ว่างแล้วสินะ เติมหน่อย หาความรู้ใส่ตัวเพิ่มหน่อยไหม?";
 
-            return `⚡ [Offline Mode] วันนี้การเงินดู${moodStr} (บวก ${income - expense} บาท) แต่งานค้างอีก ${taskCount} อย่าง พลังงานเหลือ ${energy}/10... ${advice} 🚀`;
+            return `⚡ [Offline Mode] วันนี้การเงินดูดี${moodStr} (บวก ${income - expense} บาท) แต่งานค้างอีก ${taskCount} อย่าง พลังงานเหลือ ${energy}/10... ${advice} 🚀`;
         }
     }
     async generateCrisisPlan(mode: string, context: any): Promise<string[]> {
