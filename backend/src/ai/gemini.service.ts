@@ -141,7 +141,7 @@ export class GeminiService {
             if (income > expense * 1.5) moodStr = "รวยเละ";
             else if (expense > income * 0.8) moodStr = "กระเป๋าฉีก";
 
-            let advice = "พักผ่อนบ้างนะครับคุณโทนี่";
+            let advice = "พักผ่อนบ้างนะครับคุณโทนี่ ผมเป็นห่วง";
             if (taskCount > 5) advice = "เคลียร์งานด่วนก่อนนะครับ เดี๋ยวดินพอกหางหมู";
             else if (taskCount === 0) advice = "ว่างแล้วสินะ เติมหน่อย หาความรู้ใส่ตัวเพิ่มหน่อยไหม?";
 
