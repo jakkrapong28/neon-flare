@@ -143,7 +143,7 @@ export class GeminiService {
 
             let advice = "พักผ่อนบ้างนะครับคุณโทนี่";
             if (taskCount > 5) advice = "เคลียร์งานด่วนก่อนนะครับ เดี๋ยวดินพอกหางหมู";
-            else if (taskCount === 0) advice = "ว่างแล้วสินะ? หาความรู้ใส่ตัวเพิ่มหน่อยไหม?";
+            else if (taskCount === 0) advice = "ว่างแล้วสินะ เติมหน่อย หาความรู้ใส่ตัวเพิ่มหน่อยไหม?";
 
             return `⚡ [Offline Mode] วันนี้การเงินดู${moodStr} (บวก ${income - expense} บาท) แต่งานค้างอีก ${taskCount} อย่าง พลังงานเหลือ ${energy}/10... ${advice} 🚀`;
         }
