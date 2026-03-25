@@ -19,7 +19,7 @@ export class GeminiService {
         try {
             console.log("Attempting generation with Gemini 2.0 Flash...");
             return await this.model.generateContent(prompt);
-        } catch (error) {
+        } catch (error) { 
             console.warn("Gemini 2.0 failed. Falling back to 1.5 Flash.", error);
             try {
                 return await this.fallbackModel.generateContent(prompt);
@@ -142,7 +142,7 @@ export class GeminiService {
             else if (expense > income * 0.8) moodStr = "กระเป๋าฉีก";
 
             let advice = "พักผ่อนบ้างนะครับคุณโทนี่";
-            if (taskCount > 5) advice = "เคลียร์งานด่วนก่อนนะครับ เด๋วดินพอกหางหมู";
+            if (taskCount > 5) advice = "เคลียร์งานด่วนก่อนนะครับ เดี๋ยวดินพอกหางหมู";
             else if (taskCount === 0) advice = "ว่างแล้วสินะ? หาความรู้ใส่ตัวเพิ่มหน่อยไหม?";
 
             return `⚡ [Offline Mode] วันนี้การเงินดู${moodStr} (บวก ${income - expense} บาท) แต่งานค้างอีก ${taskCount} อย่าง พลังงานเหลือ ${energy}/10... ${advice} 🚀`;
