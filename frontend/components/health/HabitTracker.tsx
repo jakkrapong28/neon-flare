@@ -12,22 +12,25 @@ export function HabitTracker() {
     };
 
     return (
-        <div className="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
-            <h3 className="text-lg font-semibold text-emerald-400 mb-4">กิจกรรมประจำวัน (Daily Habits)</h3>
-            <div className="space-y-3">
+        <div className="bg-transparent font-sans">
+            <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wider font-mono flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                กิจกรรมประจำวัน (Daily Habits)
+            </h3>
+            <div className="space-y-2.5">
                 {habitsList.map(habit => (
                     <div
                         key={habit}
                         onClick={() => toggle(habit)}
-                        className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all border ${checked[habit]
-                            ? "bg-emerald-500/20 border-emerald-500/50"
-                            : "bg-zinc-950 border-zinc-800 hover:border-zinc-700"
+                        className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all duration-300 border ${checked[habit]
+                            ? "bg-green-500/5 border-green-500/20 shadow-sm"
+                            : "bg-muted/40 border-border hover:border-zinc-300"
                             }`}
                     >
-                        <span className={checked[habit] ? "text-emerald-300 line-through" : "text-zinc-300"}>{habit}</span>
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center border transition-all ${checked[habit] ? "bg-emerald-500 border-emerald-500" : "border-zinc-600"
+                        <span className={`text-xs font-medium ${checked[habit] ? "text-muted-foreground line-through" : "text-foreground"}`}>{habit}</span>
+                        <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-all duration-300 ${checked[habit] ? "bg-green-500 border-green-500 text-white" : "border-border bg-transparent"
                             }`}>
-                            {checked[habit] && <Check className="w-4 h-4 text-white" />}
+                            {checked[habit] && <Check className="w-3.5 h-3.5 text-white stroke-[3.5px]" />}
                         </div>
                     </div>
                 ))}

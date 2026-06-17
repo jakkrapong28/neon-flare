@@ -9,15 +9,15 @@ interface GradientCardProps {
 }
 
 export function GradientCard({ title, value, trend, icon: Icon, color }: GradientCardProps) {
-    const colors = {
-        emerald: "from-emerald-500/10 to-emerald-900/5 text-emerald-500",
-        blue: "from-blue-500/10 to-blue-900/5 text-blue-500",
-        rose: "from-rose-500/10 to-rose-900/5 text-rose-500",
-        amber: "from-amber-500/10 to-amber-900/5 text-amber-500",
-        purple: "from-purple-500/10 to-purple-900/5 text-purple-500",
+    const textColors = {
+        emerald: "text-emerald-600 bg-emerald-50 border border-emerald-250/20",
+        blue: "text-blue-600 bg-blue-50 border border-blue-250/20",
+        rose: "text-rose-600 bg-rose-50 border border-rose-250/20",
+        amber: "text-amber-600 bg-amber-50 border border-amber-250/20",
+        purple: "text-purple-600 bg-purple-50 border border-purple-250/20",
     };
 
-    const textColors = {
+    const iconColors = {
         emerald: "text-emerald-500",
         blue: "text-blue-500",
         rose: "text-rose-500",
@@ -26,16 +26,16 @@ export function GradientCard({ title, value, trend, icon: Icon, color }: Gradien
     };
 
     return (
-        <div className={`p-6 rounded-2xl bg-gradient-to-br ${colors[color]} border border-white/5 relative overflow-hidden group hover:border-white/10 transition-all`}>
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Icon className="w-24 h-24" />
+        <div className="p-6 rounded-2xl bg-card border border-border relative overflow-hidden group hover:border-zinc-300 transition-all shadow-sm">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Icon className={`w-24 h-24 ${iconColors[color]}`} />
             </div>
-            <p className="text-zinc-400 text-sm font-medium relative z-10">{title}</p>
+            <p className="text-muted-foreground text-sm font-medium relative z-10">{title}</p>
             <div className="flex items-end gap-3 mt-2 relative z-10">
-                <h2 className={`text-3xl font-black text-white`}>
+                <h2 className="text-3xl font-black text-foreground">
                     ฿{value.toLocaleString()}
                 </h2>
-                <span className={`text-xs font-bold px-1.5 py-0.5 rounded bg-black/20 ${textColors[color]}`}>
+                <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${textColors[color]}`}>
                     {trend}
                 </span>
             </div>

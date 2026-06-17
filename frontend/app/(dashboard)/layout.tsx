@@ -25,7 +25,7 @@ export default function DashboardLayout({
     if (!isAuthenticated) return null; // Prevent rendering dashboard while redirecting
 
     return (
-        <div className="flex h-screen w-full overflow-hidden bg-black text-white">
+        <div className="flex h-screen w-full overflow-hidden bg-background text-foreground">
             <AppSidebar />
             <main className="flex-1 overflow-y-auto p-8 relative">
                 {children}

@@ -71,50 +71,73 @@ export function EisenhowerMatrix() {
     };
 
     return (
-        <div className="flex flex-col h-full gap-4">
+        <div className="flex flex-col h-full gap-4 font-sans text-foreground">
             <div className="flex justify-between items-center">
-                <h3 className="text-lg font-medium text-white">Eisenhower Matrix</h3>
+                <h3 className="text-md font-bold text-foreground uppercase tracking-wider font-mono">Eisenhower Matrix</h3>
                 <Button
                     size="sm"
                     onClick={handleAiPrioritize}
                     disabled={loading || tasks.length === 0}
-                    className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-extrabold transition-all cursor-pointer rounded-lg px-4 shadow-sm"
                 >
                     <Sparkles className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
                     {loading ? "AI Organizing..." : "AI Organize"}
                 </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
-                <div className="bg-zinc-900/50 border border-yellow-500/30 shadow-lg shadow-yellow-500/10 p-4 rounded-xl flex flex-col">
-                    <h3 className="text-red-400 font-bold mb-2 text-sm uppercase tracking-wider">ทำทันที (Do First)</h3>
+            <div className="grid grid-cols-2 gap-3 flex-1 min-h-0">
+                {/* Do First (Laser Red / Destructive) */}
+                <div className="bg-card border border-destructive/25 hover:border-destructive/40 shadow-sm p-3 rounded-xl flex flex-col transition-all duration-300">
+                    <h3 className="text-destructive font-black mb-2 text-[10px] uppercase tracking-widest font-mono">ทำทันที (Do First)</h3>
                     <PrivacyBlur className="flex-1 overflow-y-auto">
-                        <ul className="space-y-2">
-                            {matrix.doFirst.map((t, i) => <li key={t._id || i} className="bg-red-500/10 p-2 rounded text-sm text-zinc-300 border-l-2 border-red-500">{t.title || t}</li>)}
+                        <ul className="space-y-1.5">
+                            {matrix.doFirst.map((t, i) => (
+                                <li key={t._id || i} className="bg-destructive/5 p-2 rounded text-xs text-foreground border-l-2 border-destructive">
+                                    {t.title || t}
+                                </li>
+                            ))}
                         </ul>
                     </PrivacyBlur>
                 </div>
-                <div className="bg-zinc-900/50 border border-yellow-500/30 shadow-lg shadow-yellow-500/10 p-4 rounded-xl flex flex-col">
-                    <h3 className="text-blue-400 font-bold mb-2 text-sm uppercase tracking-wider">วางแผน (Schedule)</h3>
+
+                {/* Schedule (Primary Accent) */}
+                <div className="bg-card border border-primary/20 hover:border-primary/40 shadow-sm p-3 rounded-xl flex flex-col transition-all duration-300">
+                    <h3 className="text-cyan-600 font-black mb-2 text-[10px] uppercase tracking-widest font-mono">วางแผน (Schedule)</h3>
                     <PrivacyBlur className="flex-1 overflow-y-auto">
-                        <ul className="space-y-2">
-                            {matrix.schedule.map((t, i) => <li key={t._id || i} className="bg-blue-500/10 p-2 rounded text-sm text-zinc-300 border-l-2 border-blue-500">{t.title || t}</li>)}
+                        <ul className="space-y-1.5">
+                            {matrix.schedule.map((t, i) => (
+                                <li key={t._id || i} className="bg-cyan-500/5 p-2 rounded text-xs text-foreground border-l-2 border-cyan-500">
+                                    {t.title || t}
+                                </li>
+                            ))}
                         </ul>
                     </PrivacyBlur>
                 </div>
-                <div className="bg-zinc-900/50 border border-yellow-500/30 shadow-lg shadow-yellow-500/10 p-4 rounded-xl flex flex-col">
-                    <h3 className="text-yellow-400 font-bold mb-2 text-sm uppercase tracking-wider">กระจายงาน (Delegate)</h3>
+
+                {/* Delegate (Pink / Accent) */}
+                <div className="bg-card border border-pink-500/20 hover:border-pink-500/40 shadow-sm p-3 rounded-xl flex flex-col transition-all duration-300">
+                    <h3 className="text-pink-600 font-black mb-2 text-[10px] uppercase tracking-widest font-mono">กระจายงาน (Delegate)</h3>
                     <PrivacyBlur className="flex-1 overflow-y-auto">
-                        <ul className="space-y-2">
-                            {matrix.delegate.map((t, i) => <li key={t._id || i} className="bg-yellow-500/10 p-2 rounded text-sm text-zinc-300 border-l-2 border-yellow-500">{t.title || t}</li>)}
+                        <ul className="space-y-1.5">
+                            {matrix.delegate.map((t, i) => (
+                                <li key={t._id || i} className="bg-pink-500/5 p-2 rounded text-xs text-foreground border-l-2 border-pink-500">
+                                    {t.title || t}
+                                </li>
+                            ))}
                         </ul>
                     </PrivacyBlur>
                 </div>
-                <div className="bg-zinc-900/50 border border-yellow-500/30 shadow-lg shadow-yellow-500/10 p-4 rounded-xl flex flex-col">
-                    <h3 className="text-zinc-400 font-bold mb-2 text-sm uppercase tracking-wider">กำจัดทิ้ง (Delete)</h3>
+
+                {/* Delete (Muted Gray) */}
+                <div className="bg-card border border-border hover:border-zinc-300 shadow-sm p-3 rounded-xl flex flex-col transition-all duration-300">
+                    <h3 className="text-muted-foreground font-black mb-2 text-[10px] uppercase tracking-widest font-mono">กำจัดทิ้ง (Delete)</h3>
                     <PrivacyBlur className="flex-1 overflow-y-auto">
-                        <ul className="space-y-2">
-                            {matrix.delete.map((t, i) => <li key={t._id || i} className="bg-zinc-500/10 p-2 rounded text-sm text-zinc-300 border-l-2 border-zinc-500">{t.title || t}</li>)}
+                        <ul className="space-y-1.5">
+                            {matrix.delete.map((t, i) => (
+                                <li key={t._id || i} className="bg-muted p-2 rounded text-xs text-muted-foreground border-l-2 border-zinc-400">
+                                    {t.title || t}
+                                </li>
+                            ))}
                         </ul>
                     </PrivacyBlur>
                 </div>

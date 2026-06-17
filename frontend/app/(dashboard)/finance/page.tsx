@@ -40,28 +40,28 @@ export default function FinancePage() {
         t.date.startsWith(currentDate.toISOString().slice(0, 7))
     );
 
-    if (!mounted) return <div className="p-8 text-center text-zinc-500">Loading Finance System...</div>;
+    if (!mounted) return <div className="p-8 text-center text-muted-foreground">Loading Finance System...</div>;
 
     return (
-        <div className="space-y-8 max-w-6xl mx-auto p-4 md:p-0">
+        <div className="space-y-8 max-w-6xl mx-auto p-4 md:p-0 text-foreground">
             {/* Header */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-2">
-                        <Wallet className="w-8 h-8 text-emerald-500" />
+                    <h1 className="text-3xl font-black text-foreground tracking-tight flex items-center gap-2">
+                        <Wallet className="w-8 h-8 text-primary" />
                         {t('title')}
                     </h1>
-                    <p className="text-zinc-400">ภาพรวมการเงินและกระแสเงินสด (Cash Flow & Net Worth)</p>
+                    <p className="text-muted-foreground">ภาพรวมการเงินและกระแสเงินสด (Cash Flow & Net Worth)</p>
                 </div>
 
-                <div className="flex items-center gap-4 bg-zinc-900/50 p-2 rounded-xl border border-zinc-800">
-                    <button onClick={() => changeMonth(-1)} className="p-2 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-white transition-colors">
+                <div className="flex items-center gap-4 bg-muted/50 p-2 rounded-xl border border-border">
+                    <button onClick={() => changeMonth(-1)} className="p-2 hover:bg-secondary rounded-lg text-muted-foreground hover:text-foreground transition-colors">
                         <ArrowRight className="w-5 h-5 rotate-180" />
                     </button>
-                    <span className="font-bold text-white min-w-[140px] text-center">
+                    <span className="font-bold text-foreground min-w-[140px] text-center">
                         {currentDate.toLocaleDateString('th-TH', { month: 'long', year: 'numeric' })}
                     </span>
-                    <button onClick={() => changeMonth(1)} className="p-2 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-white transition-colors">
+                    <button onClick={() => changeMonth(1)} className="p-2 hover:bg-secondary rounded-lg text-muted-foreground hover:text-foreground transition-colors">
                         <ArrowRight className="w-5 h-5" />
                     </button>
                 </div>
@@ -69,9 +69,9 @@ export default function FinancePage() {
                 <div className="flex gap-3 w-full md:w-auto">
                     <button
                         onClick={() => router.push('/finance/scan')}
-                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-bold transition-all border border-zinc-700"
+                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-zinc-200 text-foreground rounded-xl font-bold transition-all border border-border"
                     >
-                        <ScanLine className="w-5 h-5 text-emerald-400" />
+                        <ScanLine className="w-5 h-5 text-primary" />
                         สแกนสลิป (AI Scan)
                     </button>
                     <TransactionModal onSuccess={() => { }} />
@@ -105,8 +105,8 @@ export default function FinancePage() {
 
             {/* Charts Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 bg-zinc-900/30 border border-zinc-800 rounded-2xl p-6 min-h-[300px]">
-                    <h3 className="text-lg font-bold text-white mb-6">กระแสเงินสด (Cash Flow Trend)</h3>
+                <div className="lg:col-span-2 bg-card border border-border rounded-2xl p-6 min-h-[300px] shadow-sm">
+                    <h3 className="text-lg font-bold text-foreground mb-6">กระแสเงินสด (Cash Flow Trend)</h3>
                     {chartData.length > 0 ? (
                         <div className="h-[250px] w-full">
                             <ResponsiveContainer width="100%" height="100%">
@@ -123,10 +123,10 @@ export default function FinancePage() {
                                     </defs>
                                     <XAxis dataKey="date" stroke="#52525b" fontSize={12} tickFormatter={(val) => val.slice(8)} />
                                     <YAxis stroke="#52525b" fontSize={12} tickFormatter={(val) => `฿${val / 1000}k`} />
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e4e4e7" vertical={false} />
                                     <Tooltip
-                                        contentStyle={{ backgroundColor: '#09090b', borderColor: '#27272a' }}
-                                        itemStyle={{ color: '#fff' }}
+                                        contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e4e4e7', borderRadius: '12px' }}
+                                        itemStyle={{ color: '#09090b' }}
                                         formatter={(val: number) => `฿${val.toLocaleString()}`}
                                     />
                                     <Area type="monotone" dataKey="income" stroke="#10b981" fillOpacity={1} fill="url(#colorIncome)" />
@@ -135,41 +135,41 @@ export default function FinancePage() {
                             </ResponsiveContainer>
                         </div>
                     ) : (
-                        <div className="h-full flex items-center justify-center text-zinc-500">
+                        <div className="h-full flex items-center justify-center text-muted-foreground">
                             ยังไม่มีข้อมูลกราฟ
                         </div>
                     )}
                 </div>
 
                 {/* Recent Transactions */}
-                <div className="bg-zinc-900/30 border border-zinc-800 rounded-2xl p-6">
+                <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-6">
-                        <h3 className="text-lg font-bold text-white">รายการเดือนนี้ (Transactions)</h3>
-                        <Link href="/finance/transactions" className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+                        <h3 className="text-lg font-bold text-foreground">รายการเดือนนี้ (Transactions)</h3>
+                        <Link href="/finance/transactions" className="text-xs text-primary hover:underline flex items-center gap-1">
                             ดูทั้งหมด <ArrowRight className="w-3 h-3" />
                         </Link>
                     </div>
                     <div className="space-y-4">
                         {monthTransactions.slice(0, 5).map((t) => (
-                            <div key={t.id} className="flex items-center justify-between p-3 bg-zinc-950/50 rounded-xl border border-zinc-900">
+                            <div key={t.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-xl border border-border">
                                 <div className="flex items-center gap-3">
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${t.type === 'INCOME' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'}`}>
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${t.type === 'INCOME' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
                                         {t.type === 'INCOME' ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
                                     </div>
                                     <div>
-                                        <p className="font-bold text-zinc-200 text-sm">{t.note || t.category}</p>
-                                        <p className="text-xs text-zinc-500">
+                                        <p className="font-bold text-foreground text-sm">{t.note || t.category}</p>
+                                        <p className="text-xs text-muted-foreground">
                                             {new Date(t.date).toLocaleDateString('th-TH', { timeZone: 'Asia/Bangkok', day: 'numeric', month: 'short' })}
                                         </p>
                                     </div>
                                 </div>
-                                <span className={`font-mono font-bold ${t.type === 'INCOME' ? 'text-emerald-500' : 'text-rose-500'}`}>
+                                <span className={`font-mono font-bold ${t.type === 'INCOME' ? 'text-emerald-600' : 'text-rose-600'}`}>
                                     {t.type === 'INCOME' ? '+' : '-'} ฿{t.amount.toLocaleString()}
                                 </span>
                             </div>
                         ))}
                         {monthTransactions.length === 0 && (
-                            <p className="text-center text-zinc-500 text-sm py-8">ไม่มีรายการในเดือนนี้</p>
+                            <p className="text-center text-muted-foreground text-sm py-8">ไม่มีรายการในเดือนนี้</p>
                         )}
                     </div>
                 </div>

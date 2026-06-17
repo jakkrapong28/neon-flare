@@ -11,9 +11,6 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea" // Assuming generic or HTML
-import { Label } from "@/components/ui/label" // Assuming generic or HTML
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group" // Assuming generic or HTML
 import { Wallet, Briefcase, Zap, AlertTriangle, CheckCircle2, Wind, BookOpen } from "lucide-react"
 
 // Mock Data for Work
@@ -48,27 +45,27 @@ export function CrisisDialog({ mode, isOpen, onClose, onConfirm }: CrisisDialogP
         switch (mode) {
             case 'money':
                 return (
-                    <div className="grid gap-4 py-4">
+                    <div className="grid gap-4 py-4 text-foreground">
                         <div className="grid gap-2">
-                            <label htmlFor="amount" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-zinc-700">
+                            <label htmlFor="amount" className="text-xs font-bold font-mono uppercase tracking-wider text-muted-foreground">
                                 ยอดเงินที่ต้องการ (บาท)
                             </label>
                             <Input
                                 id="amount"
                                 type="number"
                                 placeholder="เช่น 50,000"
-                                className="col-span-3 border-emerald-200 focus:ring-emerald-500"
+                                className="col-span-3 bg-muted border-border text-foreground focus:border-primary focus:ring-primary/20 placeholder-zinc-400 rounded-xl"
                                 onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
                             />
                         </div>
                         <div className="grid gap-2">
-                            <label htmlFor="date" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-zinc-700">
+                            <label htmlFor="date" className="text-xs font-bold font-mono uppercase tracking-wider text-muted-foreground">
                                 วันที่ต้องใช้
                             </label>
                             <Input
                                 id="date"
                                 type="date"
-                                className="col-span-3"
+                                className="col-span-3 bg-muted border-border text-foreground focus:border-primary focus:ring-primary/20 rounded-xl"
                                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                             />
                         </div>
@@ -76,15 +73,15 @@ export function CrisisDialog({ mode, isOpen, onClose, onConfirm }: CrisisDialogP
                 );
             case 'work':
                 return (
-                    <div className="grid gap-4 py-4">
-                        <p className="text-sm text-muted-foreground mb-2">เลือก 1 งานที่ "ต้องเสร็จ" วันนี้ (งานอื่นจะถูกเลื่อนออกไป)</p>
+                    <div className="grid gap-4 py-4 text-foreground">
+                        <p className="text-xs text-muted-foreground font-medium mb-2">เลือก 1 งานที่ "ต้องเสร็จ" วันนี้ (งานอื่นจะถูกเลื่อนออกไป)</p>
                         <div className="space-y-2">
                             {MOCK_TASKS.map((task) => (
-                                <div key={task.id} className="flex items-center space-x-2 border p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => setFormData({ ...formData, taskId: task.id })}>
-                                    <div className={`w-5 h-5 rounded-full border border-primary flex items-center justify-center ${formData.taskId === task.id ? 'bg-primary' : 'bg-transparent'}`}>
-                                        {formData.taskId === task.id && <CheckCircle2 className="w-3 h-3 text-white" />}
+                                <div key={task.id} className="flex items-center space-x-3 border border-border bg-muted/40 p-3 rounded-xl hover:border-zinc-300 transition-colors cursor-pointer" onClick={() => setFormData({ ...formData, taskId: task.id })}>
+                                    <div className={`w-4 h-4 rounded-full border border-primary/40 flex items-center justify-center ${formData.taskId === task.id ? 'bg-primary border-primary' : 'bg-transparent'}`}>
+                                        {formData.taskId === task.id && <CheckCircle2 className="w-2.5 h-2.5 text-primary-foreground stroke-[3px]" />}
                                     </div>
-                                    <span className="text-sm font-medium">{task.title}</span>
+                                    <span className="text-sm font-bold text-foreground">{task.title}</span>
                                 </div>
                             ))}
                         </div>
@@ -95,34 +92,34 @@ export function CrisisDialog({ mode, isOpen, onClose, onConfirm }: CrisisDialogP
                     <div className="grid grid-cols-2 gap-4 py-6">
                         <Button
                             variant="outline"
-                            className="h-32 flex flex-col gap-3 hover:border-orange-500 hover:bg-orange-50 transition-all"
+                            className="h-32 flex flex-col gap-3 bg-muted/50 border border-border hover:border-primary/50 hover:bg-secondary transition-all cursor-pointer text-foreground rounded-xl"
                             onClick={() => handleConfirm()} // Direct action
                         >
-                            <Wind className="w-8 h-8 text-orange-500" />
-                            <span className="font-bold text-lg">ฝึกหายใจ</span>
-                            <span className="text-xs text-muted-foreground">3 นาทีเพื่อสงบจิตใจ</span>
+                            <Wind className="w-8 h-8 text-pink-600" />
+                            <span className="font-extrabold text-md">ฝึกหายใจ</span>
+                            <span className="text-[10px] text-muted-foreground">3 นาทีเพื่อสงบจิตใจ</span>
                         </Button>
                         <Button
                             variant="outline"
-                            className="h-32 flex flex-col gap-3 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                            className="h-32 flex flex-col gap-3 bg-muted/50 border border-border hover:border-primary/50 hover:bg-secondary transition-all cursor-pointer text-foreground rounded-xl"
                             onClick={() => handleConfirm()} // Direct action
                         >
-                            <BookOpen className="w-8 h-8 text-blue-500" />
-                            <span className="font-bold text-lg">ระบายความเครียด</span>
-                            <span className="text-xs text-muted-foreground">เขียน Journal สั้นๆ</span>
+                            <BookOpen className="w-8 h-8 text-cyan-600" />
+                            <span className="font-extrabold text-md">ระบายความเครียด</span>
+                            <span className="text-[10px] text-muted-foreground">เขียน Journal สั้นๆ</span>
                         </Button>
                     </div>
                 );
             case 'urgent':
                 return (
-                    <div className="grid gap-4 py-4">
+                    <div className="grid gap-4 py-4 text-foreground">
                         <div className="grid gap-2">
-                            <label htmlFor="brain-dump" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-zinc-700">
+                            <label htmlFor="brain-dump" className="text-xs font-bold font-mono uppercase tracking-wider text-muted-foreground">
                                 เกิดอะไรขึ้น? (เล่าสั้นๆ)
                             </label>
                             <textarea
                                 id="brain-dump"
-                                className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="flex min-h-[120px] w-full rounded-xl border border-border bg-muted px-3 py-2 text-sm text-foreground placeholder-zinc-400 focus-visible:outline-none focus-visible:border-primary/50 focus-visible:ring-1 focus-visible:ring-primary/20 transition-all"
                                 placeholder="พิมพ์ระบาย หรือบอกปัญหาตรงนี้..."
                                 onChange={(e) => setFormData({ ...formData, note: e.target.value })}
                             />
@@ -156,16 +153,16 @@ export function CrisisDialog({ mode, isOpen, onClose, onConfirm }: CrisisDialogP
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[425px] bg-white text-zinc-900 border-zinc-200 shadow-2xl">
+            <DialogContent className="sm:max-w-[425px] bg-card text-foreground border border-border shadow-lg rounded-2xl">
                 <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold flex items-center gap-2">
-                        {mode === 'money' && <Wallet className="w-6 h-6 text-emerald-600" />}
-                        {mode === 'work' && <Briefcase className="w-6 h-6 text-blue-600" />}
-                        {mode === 'burnout' && <Zap className="w-6 h-6 text-orange-500" />}
-                        {mode === 'urgent' && <AlertTriangle className="w-6 h-6 text-rose-600" />}
+                    <DialogTitle className="text-xl font-bold flex items-center gap-2 font-mono uppercase">
+                        {mode === 'money' && <Wallet className="w-5 h-5 text-cyan-600" />}
+                        {mode === 'work' && <Briefcase className="w-5 h-5 text-pink-600" />}
+                        {mode === 'burnout' && <Zap className="w-5 h-5 text-green-600" />}
+                        {mode === 'urgent' && <AlertTriangle className="w-5 h-5 text-red-600" />}
                         {getTitle()}
                     </DialogTitle>
-                    <DialogDescription className="text-zinc-500">
+                    <DialogDescription className="text-xs text-muted-foreground font-medium">
                         {mode === 'burnout' ? 'เลือกวิธีดูแลตัวเองที่คุณต้องการตอนนี้' : 'ระบบจะช่วยวิเคราะห์และวางแผนให้คุณทันที'}
                     </DialogDescription>
                 </DialogHeader>
@@ -174,8 +171,8 @@ export function CrisisDialog({ mode, isOpen, onClose, onConfirm }: CrisisDialogP
 
                 {mode !== 'burnout' && (
                     <DialogFooter>
-                        <Button variant="outline" onClick={onClose} className="border-zinc-300 text-zinc-700 hover:bg-zinc-100">ยกเลิก</Button>
-                        <Button onClick={handleConfirm} className="bg-zinc-900 text-white hover:bg-zinc-800">
+                        <Button variant="outline" onClick={onClose} className="border-border text-muted-foreground hover:text-foreground hover:bg-secondary cursor-pointer rounded-xl">ยกเลิก</Button>
+                        <Button onClick={handleConfirm} className="bg-primary hover:bg-primary/90 text-primary-foreground cursor-pointer rounded-xl font-bold">
                             {getActionLabel()}
                         </Button>
                     </DialogFooter>

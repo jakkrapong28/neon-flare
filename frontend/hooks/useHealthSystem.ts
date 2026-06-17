@@ -80,22 +80,25 @@ export function useHealthSystem() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
-        if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            if (stored) {
-                try {
-                    const parsed = JSON.parse(stored);
-                    // Check if date changed for water
-                    const today = new Date().toISOString().split('T')[0];
-                    if (parsed.water.date !== today) {
-                        parsed.water = { date: today, amount: 0, goal: 2000 };
-                    }
-                    // Merge stored data with INITIAL_DATA to ensure new fields (like mealPlan) exist
-                    setData({ ...INITIAL_DATA, ...parsed });
-                } catch (e) { console.error("Health Data Parse Error", e); }
+        const handle = requestAnimationFrame(() => {
+            setMounted(true);
+            if (typeof window !== 'undefined') {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    try {
+                        const parsed = JSON.parse(stored);
+                        // Check if date changed for water
+                        const today = new Date().toISOString().split('T')[0];
+                        if (parsed.water.date !== today) {
+                            parsed.water = { date: today, amount: 0, goal: 2000 };
+                        }
+                        // Merge stored data with INITIAL_DATA to ensure new fields (like mealPlan) exist
+                        setData({ ...INITIAL_DATA, ...parsed });
+                    } catch (e) { console.error("Health Data Parse Error", e); }
+                }
             }
-        }
+        });
+        return () => cancelAnimationFrame(handle);
     }, []);
 
     useEffect(() => {

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
     // 1. Get from local storage then parse stored json or return initialValue
-    const readValue = () => {
+    const readValue = useCallback(() => {
         // Prevent build error "window is undefined" but keep keep working
         if (typeof window === "undefined") {
             return initialValue;
@@ -17,14 +17,17 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
             console.warn(`Error reading localStorage key “${key}”:`, error);
             return initialValue;
         }
-    };
+    }, [key, initialValue]);
 
     const [storedValue, setStoredValue] = useState<T>(initialValue);
 
     // 2. Wrap in useEffect to avoid hydration mismatch (server vs client)
     useEffect(() => {
-        setStoredValue(readValue());
-    }, []);
+        const handle = requestAnimationFrame(() => {
+            setStoredValue(readValue());
+        });
+        return () => cancelAnimationFrame(handle);
+    }, [readValue]);
 
     const setValue = (value: T | ((val: T) => T)) => {
         try {

@@ -24,17 +24,17 @@ export function AppSidebar() {
     ];
 
     return (
-        <div className="flex flex-col h-screen w-72 bg-sidebar border-r border-sidebar-border text-sidebar-foreground shrink-0 shadow-sm overflow-y-auto font-sans">
-            <div className="p-6 mb-2 flex flex-col gap-6 sticky top-0 bg-sidebar z-10">
+        <div className="flex flex-col h-screen w-72 bg-card border-r border-border text-foreground shrink-0 shadow-sm overflow-y-auto font-sans relative z-30">
+            <div className="p-6 mb-2 flex flex-col gap-6 sticky top-0 bg-card/80 backdrop-blur-md z-10 border-b border-border">
                 <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-md shadow-yellow-500/20 flex items-center justify-center">
-                        <span className="text-xl font-black text-white">N</span>
+                    <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
+                        <span className="text-xl font-black text-primary-foreground">N</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="text-xl font-black tracking-tight text-foreground">
                             NEON FLARE
                         </span>
-                        <span className="text-[10px] text-muted-foreground font-medium tracking-widest uppercase">Luxury LifeOS</span>
+                        <span className="text-[10px] text-zinc-500 font-bold tracking-widest uppercase font-mono">Cybernetic LifeOS</span>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@ export function AppSidebar() {
                     onClick={() => {
                         window.dispatchEvent(new CustomEvent('open-quick-action'));
                     }}
-                    className="w-full flex items-center justify-center gap-2 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl shadow-md transition-all hover:scale-[1.02] active:scale-95"
+                    className="w-full flex items-center justify-center gap-2 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl border border-transparent transition-all hover:scale-[1.02] active:scale-95 cursor-pointer shadow-sm"
                 >
                     <Plus className="w-5 h-5 stroke-[3px]" />
                     <span>เพิ่มรายการใหม่</span>
@@ -51,7 +51,7 @@ export function AppSidebar() {
             </div>
 
 
-            <nav className="flex-1 space-y-1 px-4 pb-4">
+            <nav className="flex-1 space-y-2 px-4 pb-4 mt-4">
                 {/* Main Modules */}
                 {menu.map((item) => {
                     const Icon = item.icon;
@@ -61,48 +61,48 @@ export function AppSidebar() {
                             key={item.href}
                             href={item.href}
                             className={cn(
-                                "flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 group relative font-medium",
+                                "flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 group relative font-medium border",
                                 isActive
-                                    ? "bg-sidebar-accent text-primary font-bold shadow-sm"
-                                    : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground"
+                                    ? "bg-secondary text-primary font-bold border-border shadow-sm"
+                                    : "text-muted-foreground hover:bg-secondary hover:text-foreground border-transparent hover:border-border"
                             )}
                         >
-                            <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground")} />
+                            <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-primary" : "text-zinc-400 group-hover:text-zinc-600")} />
                             {item.name}
                         </Link>
                     );
                 })}
             </nav>
 
-            <div className="mt-auto space-y-2 p-4 bg-sidebar border-t border-sidebar-border">
+            <div className="mt-auto space-y-3 p-4 bg-muted/60 border-t border-border">
                 {/* User Profile */}
-                <div className="flex items-center gap-3 px-3 py-2 bg-sidebar-accent rounded-xl mb-2">
-                    <div className="w-10 h-10 rounded-full bg-sidebar-accent border border-sidebar-border flex items-center justify-center overflow-hidden shrink-0">
+                <div className="flex items-center gap-3 px-3 py-2 bg-card border border-border rounded-xl mb-2 shadow-sm">
+                    <div className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center overflow-hidden shrink-0">
                         {mounted && typeof window !== 'undefined' && localStorage.getItem('user_avatar') ? (
                             <img src={localStorage.getItem('user_avatar')!} alt="Profile" className="w-full h-full object-cover" />
                         ) : (
-                            <span className="text-muted-foreground font-bold">U</span>
+                            <span className="text-primary font-bold font-mono">U</span>
                         )}
                     </div>
                     <div className="overflow-hidden">
                         <p className="text-sm font-bold text-foreground truncate">
                             {mounted && typeof window !== 'undefined' ? (localStorage.getItem('user_name') || "User") : "User"}
                         </p>
-                        <p className="text-[10px] text-muted-foreground truncate">สมาชิกระดับสูง</p>
+                        <p className="text-[10px] text-muted-foreground font-mono font-bold tracking-wider truncate uppercase">LEVEL 99 ADMIN</p>
                     </div>
                 </div>
 
-                <div className="px-3 py-2">
-                    <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">{t('quick_settings')}</p>
+                <div className="px-3 py-1">
+                    <p className="text-[9px] font-bold text-muted-foreground mb-2 uppercase tracking-widest font-mono">{t('quick_settings')}</p>
                     <PrivacyToggle />
                 </div>
                 <Link
                     href="/settings"
                     className={cn(
-                        "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-foreground group",
+                        "flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all group border",
                         pathname === "/settings"
-                            ? "bg-sidebar-accent text-foreground font-medium shadow-sm border border-sidebar-border"
-                            : "text-muted-foreground hover:bg-sidebar-accent"
+                            ? "bg-secondary text-foreground font-medium border-border shadow-sm"
+                            : "text-muted-foreground hover:bg-secondary hover:text-foreground border-transparent hover:border-border"
                     )}
                 >
                     <Settings className="h-5 w-5 text-muted-foreground group-hover:text-foreground" />

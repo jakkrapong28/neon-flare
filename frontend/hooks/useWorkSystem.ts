@@ -56,17 +56,20 @@ export function useWorkSystem() {
 
     // Initial Load
     useEffect(() => {
-        setMounted(true);
-        if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            if (stored) {
-                try {
-                    setData({ ...INITIAL_DATA, ...JSON.parse(stored) });
-                } catch (e) {
-                    console.error("Failed to parse work data", e);
+        const handle = requestAnimationFrame(() => {
+            setMounted(true);
+            if (typeof window !== 'undefined') {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    try {
+                        setData({ ...INITIAL_DATA, ...JSON.parse(stored) });
+                    } catch (e) {
+                        console.error("Failed to parse work data", e);
+                    }
                 }
             }
-        }
+        });
+        return () => cancelAnimationFrame(handle);
     }, []);
 
     // Persist

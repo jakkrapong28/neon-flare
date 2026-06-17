@@ -40,15 +40,18 @@ export function useSoulSystem() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
-        if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            if (stored) {
-                try {
-                    setData(JSON.parse(stored));
-                } catch (e) { console.error("Soul Data Parse Error", e); }
+        const handle = requestAnimationFrame(() => {
+            setMounted(true);
+            if (typeof window !== 'undefined') {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    try {
+                        setData(JSON.parse(stored));
+                    } catch (e) { console.error("Soul Data Parse Error", e); }
+                }
             }
-        }
+        });
+        return () => cancelAnimationFrame(handle);
     }, []);
 
     useEffect(() => {

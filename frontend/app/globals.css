@@ -48,112 +48,98 @@
 }
 
 :root {
-  /* Light Luxury Mode (Porcelain & Deep Charcoal) */
-  --background: #F8F9FA;
-  /* Porcelain */
-  --foreground: #1F2937;
-  /* Deep Charcoal */
+  /* Minimalist Premium Light Mode */
+  --background: #ffffff;
+  --foreground: #09090b;
 
-  --card: #FFFFFF;
-  --card-foreground: #1F2937;
+  --card: #ffffff;
+  --card-foreground: #09090b;
 
-  --popover: #FFFFFF;
-  --popover-foreground: #1F2937;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
 
-  --primary: #D4AF37;
-  /* Muted Champagne Gold */
-  --primary-foreground: #FFFFFF;
+  --primary: #18181b; /* Dark charcoal */
+  --primary-foreground: #ffffff;
 
-  --secondary: #F3F4F6;
-  --secondary-foreground: #4B5563;
-  /* Slate Gray */
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
 
-  --muted: #F3F4F6;
-  --muted-foreground: #6B7280;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
 
-  --accent: #F3F4F6;
-  --accent-foreground: #1F2937;
+  --accent: #f4f4f5;
+  --accent-foreground: #09090b;
 
-  --destructive: #9B2C2C;
-  /* Burgundy Red - Urgent */
-  --destructive-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
 
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #D4AF37;
-  /* Gold Ring */
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
 
   --radius: 0.75rem;
-  /* Slightly more rounded for elegance */
 
-  /* Crisis Colors */
-  --crisis-money: #D4AF37;
-  /* Gold */
-  --crisis-work: #2C5282;
-  /* Deep Navy */
-  --crisis-burnout: #DD6B20;
-  /* Burnt Orange */
-  --crisis-urgent: #9B2C2C;
-  /* Burgundy */
-  --safe-green: #2F855A;
-  /* Emerald */
+  /* Crisis & Metric Colors (Legible on light bg) */
+  --crisis-money: #0891b2;   /* Cyan 600 */
+  --crisis-work: #db2777;    /* Pink 600 */
+  --crisis-burnout: #16a34a; /* Green 600 */
+  --crisis-urgent: #dc2626;  /* Red 600 */
+  --safe-green: #16a34a;     /* Green 600 */
 
-  --sidebar: #F8F9FA;
-  /* Match background for seamless look */
-  --sidebar-foreground: #4B5563;
-  --sidebar-primary: #D4AF37;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #E5E7EB;
-  --sidebar-accent-foreground: #1F2937;
-  --sidebar-border: #E5E7EB;
-  --sidebar-ring: #D4AF37;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #3f3f46;
+  --sidebar-primary: #18181b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #18181b;
 }
 
 .dark {
-  /* Dark Luxury Mode (Deep Navy/Black & Gold) - Kept as option but Light is default */
-  --background: #0F172A;
-  /* Deep Navy/Black */
-  --foreground: #F9FAFB;
+  /* Same as root to guarantee light theme */
+  --background: #ffffff;
+  --foreground: #09090b;
 
-  --card: #1E293B;
-  --card-foreground: #F9FAFB;
+  --card: #ffffff;
+  --card-foreground: #09090b;
 
-  --popover: #1E293B;
-  --popover-foreground: #F9FAFB;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
 
-  --primary: #D4AF37;
-  --primary-foreground: #FFFFFF;
+  --primary: #18181b;
+  --primary-foreground: #ffffff;
 
-  --secondary: #334155;
-  --secondary-foreground: #F9FAFB;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
 
-  --muted: #334155;
-  --muted-foreground: #94A3B8;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
 
-  --accent: #334155;
-  --accent-foreground: #F9FAFB;
+  --accent: #f4f4f5;
+  --accent-foreground: #09090b;
 
-  --destructive: #9B2C2C;
-  --destructive-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
 
-  --border: #334155;
-  --input: #334155;
-  --ring: #D4AF37;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
 
-  --crisis-money: #F6E05E;
-  --crisis-work: #63B3ED;
-  --crisis-burnout: #F6AD55;
-  --crisis-urgent: #FC8181;
-  --safe-green: #68D391;
+  --crisis-money: #0891b2;
+  --crisis-work: #db2777;
+  --crisis-burnout: #16a34a;
+  --crisis-urgent: #dc2626;
+  --safe-green: #16a34a;
 
-  --sidebar: #0F172A;
-  --sidebar-foreground: #94A3B8;
-  --sidebar-primary: #D4AF37;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #334155;
-  --sidebar-accent-foreground: #F9FAFB;
-  --sidebar-border: #334155;
-  --sidebar-ring: #D4AF37;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #3f3f46;
+  --sidebar-primary: #18181b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #18181b;
 }
 
 @layer base {
@@ -163,9 +149,9 @@
 
   body {
     @apply bg-background text-foreground transition-all duration-500 ease-in-out;
+    background-color: var(--background) !important;
     font-feature-settings: "rlig" 1, "calt" 1;
     line-height: 1.6;
-    /* Increased for Thai readability */
   }
 
   h1,

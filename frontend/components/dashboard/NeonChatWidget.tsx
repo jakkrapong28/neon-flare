@@ -83,12 +83,12 @@ const NeonChatWidget = forwardRef<NeonChatWidgetRef, any>((props, ref) => {
                     animate={{ scale: 1, opacity: 1 }}
                     whileHover={{ scale: 1.1 }}
                     onClick={() => setIsOpen(true)}
-                    className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-black/60 backdrop-blur-md border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.5)] flex items-center justify-center text-cyan-400 overflow-hidden group"
+                    className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-card backdrop-blur-md border border-border shadow-md flex items-center justify-center text-primary overflow-hidden group cursor-pointer"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <MessageCircle className="w-7 h-7 relative z-10" />
-                    {/* Notification Dot (Optional Logic) */}
-                    <span className="absolute top-3 right-3 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse border border-black code-font" />
+                    <div className="absolute inset-0 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <MessageCircle className="w-6 h-6 relative z-10" />
+                    {/* Notification Dot */}
+                    <span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse border border-card" />
                 </motion.button>
             )}
 
@@ -99,30 +99,30 @@ const NeonChatWidget = forwardRef<NeonChatWidgetRef, any>((props, ref) => {
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
-                        className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh] flex flex-col rounded-2xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-xl bg-black/40"
+                        className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh] flex flex-col rounded-2xl overflow-hidden border border-border shadow-lg backdrop-blur-xl bg-card font-sans"
                     >
                         {/* Header */}
-                        <div className="h-16 bg-white/5 border-b border-white/5 flex items-center justify-between px-4 backdrop-blur-md">
+                        <div className="h-16 bg-muted/50 border-b border-border flex items-center justify-between px-4 backdrop-blur-md">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 p-[1px] shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                                    <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
-                                        <Sparkles className="w-5 h-5 text-cyan-400" />
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-zinc-400 to-zinc-600 p-[1px]">
+                                    <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
+                                        <Sparkles className="w-5 h-5 text-primary" />
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-white tracking-wide text-sm flex items-center gap-2">
-                                        NEON AI <span className="text-[10px] bg-cyan-500/10 text-cyan-400 px-1.5 py-0.5 rounded border border-cyan-500/20">ONLINE</span>
+                                    <h3 className="font-bold text-foreground tracking-wide text-sm flex items-center gap-2 font-mono">
+                                        NEON AI <span className="text-[9px] bg-green-500/10 text-green-600 px-1.5 py-0.5 rounded border border-green-500/20 font-bold uppercase tracking-wider">ONLINE</span>
                                     </h3>
-                                    <p className="text-[10px] text-zinc-400">LifeOS Assistant</p>
+                                    <p className="text-[9px] text-muted-foreground uppercase tracking-widest font-mono">LifeOS Assistant</p>
                                 </div>
                             </div>
-                            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="text-zinc-400 hover:text-white hover:bg-white/5 rounded-full">
-                                <Minimize2 className="w-5 h-5" />
+                            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full cursor-pointer w-8 h-8">
+                                <Minimize2 className="w-4 h-4" />
                             </Button>
                         </div>
 
                         {/* Messages Area */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent">
                             {messages.map((msg, idx) => (
                                 <motion.div
                                     key={idx}
@@ -130,9 +130,9 @@ const NeonChatWidget = forwardRef<NeonChatWidgetRef, any>((props, ref) => {
                                     animate={{ opacity: 1, y: 0 }}
                                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <div className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-lg ${msg.role === 'user'
-                                        ? 'bg-gradient-to-br from-cyan-600 to-blue-700 text-white rounded-br-none border border-cyan-500/20'
-                                        : 'bg-zinc-900/80 text-zinc-200 rounded-bl-none border border-white/10'
+                                    <div className={`max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed shadow-sm ${msg.role === 'user'
+                                        ? 'bg-primary text-primary-foreground rounded-br-none border border-transparent'
+                                        : 'bg-muted text-foreground rounded-bl-none border border-border'
                                         }`}>
                                         {msg.text}
                                     </div>
@@ -141,10 +141,10 @@ const NeonChatWidget = forwardRef<NeonChatWidgetRef, any>((props, ref) => {
 
                             {isTyping && (
                                 <div className="flex justify-start">
-                                    <div className="bg-zinc-900/50 p-3 rounded-2xl rounded-bl-none border border-white/5 flex items-center gap-1">
-                                        <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                                        <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                                        <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce"></span>
+                                    <div className="bg-muted p-3 rounded-2xl rounded-bl-none border border-border flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                                        <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                                        <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></span>
                                     </div>
                                 </div>
                             )}
@@ -152,7 +152,7 @@ const NeonChatWidget = forwardRef<NeonChatWidgetRef, any>((props, ref) => {
                         </div>
 
                         {/* Input Area */}
-                        <div className="p-4 bg-white/5 border-t border-white/5 backdrop-blur-md">
+                        <div className="p-4 bg-card border-t border-border">
                             <div className="relative flex items-center gap-2">
                                 <input
                                     type="text"
@@ -161,15 +161,15 @@ const NeonChatWidget = forwardRef<NeonChatWidgetRef, any>((props, ref) => {
                                     onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                                     placeholder={t('placeholder')}
                                     disabled={isTyping}
-                                    className="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all disabled:opacity-50"
+                                    className="flex-1 bg-muted border border-border rounded-xl px-4 py-2.5 text-xs text-foreground placeholder-zinc-400 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all disabled:opacity-50"
                                 />
                                 <Button
                                     onClick={handleSend}
                                     disabled={isTyping || !input.trim()}
                                     size="icon"
-                                    className="bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl w-11 h-11 shrink-0 shadow-[0_0_15px_rgba(8,145,178,0.4)]"
+                                    className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl w-10 h-10 shrink-0 shadow-sm cursor-pointer"
                                 >
-                                    <Send className="w-5 h-5" />
+                                    <Send className="w-4 h-4" />
                                 </Button>
                             </div>
                         </div>
